@@ -1,0 +1,80 @@
+html {
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+footer {
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+.temperature-icon {
+    background-color: #f39c12;
+    width: 30px;
+    height: 30px;
+    line-height: 34px;
+}
+
+.humidity-icon {
+    background-color: #3498db;
+    width: 30px;
+    height: 30px;
+    line-height: 40px;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.tvoc-icon {
+    font-size: xx-small;
+}
+
+.variableName {
+    font-weight: 600;
+    font-size: 19px;
+    padding-left: 15px;
+    width: 160px;
+    text-align: left;
+}
+
+.valueFont {
+    font-weight: 500;
+    font-size: 30px;
+}
+
+.temperature {
+    color: #f39c12;
+}
+
+.humidity {
+    color: #3498db;
+}
+
+.pressure {
+    color: coral;
+}
+
+.sunrise {
+    color: yellow;
+}
+
+.sunset {
+    color: #eaea0d;
+}
+
+.superscript {
+    font-weight: 400;
+    font-size: 15px;
+    position: relative;
+    top: -20px;
+}

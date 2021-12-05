@@ -4,54 +4,68 @@
   =========================*/
 
 #include "config.h"             // Nacita/prida subor config.h
-#include <Wire.h>               // Zbernica I2C
+#include <Wire.h>               // Komunikacia cez zbernicu I2C
 
 #include <SparkFunCCS811.h>     // https://github.com/sparkfun/SparkFun_CCS811_Arduino_Library
 CCS811 myCCS811(0x5A);          // Defaultna-prednastavena I2C adresa je 0x5A (0x5B - alternativna)
 
-#include <Adafruit_Sensor.h>    // Podpora komunikacie so senzormi Adafruit
-#include <Adafruit_BME680.h>    // Komunikacia s BME680
-Adafruit_BME680 bme;                      // Vytvorenie objektu BME680 s nazvom bme
-#define SEALEVELPRESSURE_HPA (1013.25)    // Zakladny tlak na hladine mora v hPa
+#include <Adafruit_Sensor.h>    // Podpora komunikacie so senzormi Adafruit - https://github.com/adafruit/Adafruit_Sensor
+#include <Adafruit_BME680.h>    // Komunikacia s BME680 - https://github.com/adafruit/Adafruit_BME680
+Adafruit_BME680 bme;                    // Vytvorenie objektu BME680 s nazvom bme
+#define SEALEVELPRESSURE_HPA (1013.25)  // Zakladny tlak na hladine mora v hPa
 float Temperature, Humidity, Pressure, Altitude, Aqi;
 
 // WIFI + WEBSERVER + OTA update
-#include <WiFi.h>                               // WIFI pre ESP32
-#include <ESPAsyncWebServer.h>    // Asynchronny webovy server - https://github.com/me-no-dev/ESPAsyncWebServer
-AsyncWebServer server(80);        // Vytvorenie asynchronneho weboveho servera s pristupom na porte 80
+#include <WiFi.h>                 // WIFI pre ESP32
+#include <ESPAsync_WiFiManager.h> // WIFI Manager - https://github.com/khoih-prog/ESPAsync_WiFiManager
+AsyncWebServer webServer(80);     // Vytvorenie asynchronneho weboveho servera s pristupom na porte 80
+DNSServer dnsServer;              // Vytvorenie DNS servera
 #include <AsyncElegantOTA.h>      // Asynchronny OTA update software - https://github.com/ayushsharma82/AsyncElegantOTA
 
 // PRACA s JSON
 #include <ArduinoJson.h>          // Praca s JSON - https://github.com/bblanchon/ArduinoJson
 
 
-// Spojenie s WIFI
-void wifiConnect() {
-  Serial.println();
-  Serial.printf("Spajam s %s ", ssid);
-  WiFi.begin(ssid, password);            // Vykonat spojenie s lokalnou wifi sietou
-  while (WiFi.status() != WL_CONNECTED)  // Kontrola, ci uz doslo k spojeniu - ak nie pise bodky na konzolu
-  {
-    Serial.print(".");
-    delay(500);                          // Pauza 500 ms
-  }
-  Serial.println(" spojene.");
-  Serial.print("Moja IP adresa: ");
-  Serial.println(WiFi.localIP());        // Vypis pridelenej IP adresy na konzolu
-  Serial.print("Moja MAC adresa: ");
-  Serial.println(WiFi.macAddress());     // Vypis MAC adresy ESP32 na konzolu
+// 111111111111111111111111111111111111111111111111111111111111111111
+// PRIKAZY VYKONAVANE IBA RAZ PRI STARTE PROGRAMU (zapnuti napajania)
+void setup() {
+  Serial.begin(115200);               // Nastavenie a start seriovej komunikacie zadanou rychlostou
+  Wire.begin(PIN_SDA, PIN_SCL);       // Start I2C zbernice na zadanych pinoch
+  delay(100);                         // Pauza X milisekund
+
+  bme680_begin();                     // Inicializacia BME680
+  ccs811_begin();                     // Inicializacia CCS811
+  wifiConnect();                      // Spojenie s WiFi sietou
+  handleRequests();                   // Obsluha volani weboveho servera
 }
 
-// ŠTART A OBSLUHA ASYNCHRONNEHO WEBOVEHO SERVERA A OTA UPDATE
+// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+// NEUSTALE SA OPAKUJUCE PRIKAZY po funkcii setup()
+void loop() {
+
+}
+// ==================================================================
+
+
+// Spojenie s WIFI sietou
+void wifiConnect() {
+  Serial.println();
+  Serial.print("Spajam s WIFI sietou ...");
+  ESPAsync_WiFiManager ESPAsync_wifiManager(&webServer, &dnsServer, "Async_AutoConnect");
+  //ESPAsync_wifiManager.resetSettings();    // Vymazanie WiFi nastaveni
+  ESPAsync_wifiManager.autoConnect("CwaStation");
+}
+
+// START A OBSLUHA ASYNCHRONNEHO WEBOVEHO SERVERA A OTA UPDATE
 void handleRequests() {
   // web api /api
-  server.on("/api", HTTP_GET, [](AsyncWebServerRequest * request) {
-    request->send(200, "application/json", Get_json_values());
+  webServer.on("/api", HTTP_GET, [](AsyncWebServerRequest * request) {
+    request->send(200, "application/json", getJsonValues());
   });
-  server.onNotFound(handle_NotFound);
+  webServer.onNotFound(handle_NotFound);
 
-  AsyncElegantOTA.begin(&server);                       // Start AsyncElegantOTA ... http://IPadresaESP32/update
-  server.begin();                                       // Start weboveho servera
+  AsyncElegantOTA.begin(&webServer);           // Start AsyncElegantOTA ... http://IPadresaESP32/update
+  webServer.begin();                           // Start weboveho servera
   Serial.println();
   Serial.println("Webovy server je nastartovany, OTA update funkcny.");
   Serial.println();
@@ -61,23 +75,6 @@ void handleRequests() {
 void handle_NotFound(AsyncWebServerRequest *request) {
   request->send(404, "text/plain", "Nenajdene!!!");
 }
-
-
-void setup() {
-  Serial.begin(115200);               // Nastavenie a start seriovej komunikacie zadanou rychlostou
-  Wire.begin(PIN_SDA, PIN_SCL);       // Start I2C zbernice na zadanych pinoch
-  delay(1);                           // Pauza X sekund
-
-  bme680_begin();                     // Inicializacia BME680
-  ccs811_begin();                     // Inicializacia CCS811
-  wifiConnect();                      // Spojenie s WiFi sietou
-  handleRequests();                   // Obsluha volani weboveho servera
-}
-
-void loop() {
-
-}
-
 
 // INICIALIZACIA A NASTAVENIE BME680
 void bme680_begin() {
@@ -114,16 +111,12 @@ void ccs811_begin() {
   Serial.println(" pripravené.");
 }
 
-// NACITA UDAJE + VYTVORI A VRATI JSON OBJEKT
-String Get_json_values() {
-  String ccs_json;
-  StaticJsonDocument<200> json;                             // Vytvori prazdny JSON objekt s nazvom json a zadanou velkostou
+// NACITANIE UDAJOV + VYTVORI A VRATI JSON OBJEKT
+String getJsonValues() {
+  String json_values;
+  StaticJsonDocument<200> json;               // Vytvori prazdny JSON objekt s nazvom json a zadanou velkostou
 
-  Temperature = bme.readTemperature();                      // Zisti teplotu
-  Humidity = bme.readHumidity();                            // Zisti vlhkost
-  Pressure = bme.readPressure() / 100.0F;                   // Zisti tlak
-  Altitude = bme.readAltitude(SEALEVELPRESSURE_HPA);        // Zisti nadmorsku vysku
-  Aqi = (bme.gas_resistance / 1000.0);                      // Zisti kvalitu vzduchu
+  getBME680values();                          // Nacita aktualne hodnoty zo senzora BME680
   json["temp"] = String(Temperature, 1);      // Zapise teplotu do JSON objektu
   json["humi"] = String(Humidity, 0);         // Zapise vlhkost do JSON objektu
   json["pres"] = String(Pressure, 0);         // Zapise tlak do JSON objektu
@@ -151,7 +144,7 @@ String Get_json_values() {
     default:
       json["aq"] = String("-----");
   }
-  json["dewp"] = String(DewPoint(Temperature, Humidity), 0); // Zapise Rosny bod do JSON objektu
+  json["dewp"] = String(dewPoint(Temperature, Humidity), 0); // Zapise Rosny bod do JSON objektu
 
   if (myCCS811.dataAvailable()) {                            // Vykona ak je senzor CCS811 pripraveny
     myCCS811.setEnvironmentalData(Humidity, Temperature);    // Zaslanie aktualnej vlhkosti/teploty do senzora CCS811 - zlepsuje to presnost senzora
@@ -160,13 +153,35 @@ String Get_json_values() {
     json["tvoc"] = String(myCCS811.getTVOC());               // Zisti TVOC
   }
 
-  serializeJson(json, ccs_json);                             // Vytvori JSON objekt
-  Serial.println(ccs_json);
-  return ccs_json;                                           // Vrati JSON objekt
+  serializeJson(json, json_values);                          // Vytvori JSON objekt
+  Serial.println(json_values);
+  return json_values;                                        // Vrati JSON objekt
+}
+
+// NACITA AKTUALNE HODNOTY ZO SENZORA BME680
+void getBME680values() {
+  if (! bme.performReading()) {                             // Zaciatok citania udajov z BME680 - 1.sposob
+    Serial.println("Failed to perform reading :(");
+    return;
+  }
+  //  unsigned long endTime = bme.beginReading();             // Zaciatok citania udajov z BME680 - 2.sposob
+  //  if (endTime == 0) {
+  //    Serial.println(F("Failed to begin reading :("));
+  //    return;
+  //  }
+  //  if (!bme.endReading()) {
+  //    Serial.println(F("Failed to complete reading :("));
+  //    return;
+  //  }
+  Temperature = bme.temperature;                            // Zisti teplotu
+  Humidity = bme.humidity;                                  // Zisti vlhkost
+  Pressure = bme.pressure / 100.0;                          // Zisti tlak
+  Altitude = bme.readAltitude(SEALEVELPRESSURE_HPA);        // Zisti nadmorsku vysku
+  Aqi = (bme.gas_resistance / 1000.0);                      // Zisti kvalitu vzduchu
 }
 
 // VYPOCITA A VRATI Rosny bod
-double DewPoint(double TemperatureCelsius, double Humidity)
+double dewPoint(double TemperatureCelsius, double Humidity)
 {
   double a = 17.271;
   double b = 237.7;

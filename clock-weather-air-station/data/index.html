@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="refresh" content="60" />
+    <title>CLOCK-WEATHER-AIR STATION</title>
+    <link rel="icon" type="image/ico" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="my.css" />
+</head>
+
+<body>
+    <header class="h1 bg-warning bg-gradient fw-bold text-white pt-3 mb-3 border-bottom rounded-bottom">
+        CLOCK-WEATHER-AIR STATION
+    </header>
+
+    <main class="container">
+        <div class="d-flex flex-wrap justify-content-center mb-3">
+            <div class="card text-dark bg-warning mb-3 me-3 shadow">
+                <div class="card-header display-6">HOME</div>
+
+                <div class="d-flex align-items-center justify-content-between pt-3 px-4">
+                    <div class="text-center temperature-icon rounded-circle">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="9.915px" height="22px" viewBox="0 0 9.915 22" enable-background="new 0 0 9.915 22" xml:space="preserve">
+                <path
+                  fill="#FFFFFF"
+                  d="M3.498,0.53c0.377-0.331,0.877-0.501,1.374-0.527C5.697-0.04,6.522,0.421,6.924,1.142
+        c0.237,0.399,0.315,0.871,0.311,1.33C7.229,5.856,7.245,9.24,7.227,12.625c1.019,0.539,1.855,1.424,2.301,2.491
+        c0.491,1.163,0.518,2.514,0.062,3.693c-0.414,1.102-1.24,2.038-2.276,2.594c-1.056,0.583-2.331,0.743-3.501,0.463
+        c-1.417-0.323-2.659-1.314-3.3-2.617C0.014,18.26-0.115,17.104,0.1,16.022c0.296-1.443,1.274-2.717,2.58-3.394
+        c0.013-3.44,0-6.881,0.007-10.322C2.674,1.634,2.974,0.955,3.498,0.53z"
+                ></path>
+              </svg>
+                    </div>
+                    <!-- <div class="flex-fill variableName">Temperature</div> -->
+                    <div class="valueFont temperature ps-3">%tempIN%<span class="superscript">°C</span></div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div class="text-center humidity-icon rounded-circle">
+                        <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="12px" height="17.955px" viewBox="0 0 13 17.955" enable-background="new 0 0 13 17.955" xml:space="preserve">
+                <path
+                  fill="#FFFFFF"
+                  d="M1.819,6.217C3.139,4.064,6.5,0,6.5,0s3.363,4.064,4.681,6.217c1.793,2.926,2.133,5.05,1.571,7.057
+        c-0.438,1.574-2.264,4.681-6.252,4.681c-3.988,0-5.813-3.107-6.252-4.681C-0.313,11.267,0.026,9.143,1.819,6.217"
+                ></path>
+              </svg>
+                    </div>
+                    <!-- <div class="flex-fill variableName">Humidity</div> -->
+                    <div class="valueFont humidity ps-3">%humiIN%<span class="superscript">&#37;</span></div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div class="icon rounded-circle">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 508 508" style="enable-background: new 0 0 508 508" xml:space="preserve">
+                <circle style="fill: #fd8469" cx="254" cy="254" r="254" />
+                <path
+                  style="fill: #324a5e"
+                  d="M254,446.8c-106.4,0-192.8-86.4-192.8-192.8S147.6,61.2,254,61.2S446.8,147.6,446.8,254
+	S360.4,446.8,254,446.8z"
+                />
+                <path
+                  style="fill: #e6e9ee"
+                  d="M406.8,262.8c0-2.8,0.4-6,0.4-8.8c0-84.4-68.4-153.2-153.2-153.2c-84.4,0-153.2,68.4-153.2,153.2
+	c0,2.8,0,6,0.4,8.8H406.8z"
+                />
+                <path
+                  style="fill: #ff7058"
+                  d="M204.8,166.4c-0.8-1.2-2-1.6-3.2-0.8c-1.2,0.4-2,2-1.2,3.2l42,101.2c0.4,0.4,0.4,1.2,0.8,1.6
+	c3.2,5.2,10,6.8,15.2,3.6c5.2-3.2,6.8-10,3.6-15.2L204.8,166.4z"
+                />
+                <circle style="fill: #ffd05b" cx="254" cy="262.8" r="27.6" />
+                <path
+                  style="fill: #acb3ba"
+                  d="M254,136L254,136c-2.8,0-5.2-2.4-5.2-5.2V120c0-2.8,2.4-5.2,5.2-5.2l0,0c2.8,0,5.2,2.4,5.2,5.2v10.8
+		C259.2,133.6,256.8,136,254,136z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M337.6,170.4L337.6,170.4c-2-2-2-5.2,0-7.2l7.6-7.6c2-2,5.2-2,7.2,0l0,0c2,2,2,5.2,0,7.2l-7.6,7.6
+		C342.4,172.4,339.2,172.4,337.6,170.4z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M156,156L156,156c2-2,5.2-2,7.2,0l7.6,7.6c2,2,2,5.2,0,7.2l0,0c-2,2-5.2,2-7.2,0l-7.6-7.6
+		C154,161.2,154,158,156,156z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M208.8,144.8L208.8,144.8c-2.4,1.2-5.6,0-6.4-2.8l-4-10c-1.2-2.4,0-5.6,2.8-6.4l0,0
+		c2.4-1.2,5.6,0,6.4,2.8l4,10C212.8,140.8,211.6,144,208.8,144.8z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M363.2,208.8L363.2,208.8c-1.2-2.4,0-5.6,2.8-6.4l10-4c2.4-1.2,5.6,0,6.4,2.8l0,0
+		c1.2,2.4,0,5.6-2.8,6.4l-10,4C367.2,212.8,364,211.6,363.2,208.8z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M299.2,144.8L299.2,144.8c-2.4-1.2-3.6-4-2.8-6.4l4-10c1.2-2.4,4-3.6,6.4-2.8l0,0
+		c2.4,1.2,3.6,4,2.8,6.4l-4,10C304.8,144.8,301.6,146,299.2,144.8z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M125.6,200.8L125.6,200.8c1.2-2.4,4-3.6,6.4-2.8l10,4c2.4,1.2,3.6,4,2.8,6.4l0,0
+		c-1.2,2.4-4,3.6-6.4,2.8l-10-4C126,206.4,124.8,203.6,125.6,200.8z"
+                />
+                <circle style="fill: #2b3b4e" cx="254" cy="82.4" r="10" />
+                <circle style="fill: #2b3b4e" cx="254" cy="425.6" r="10" />
+                <circle style="fill: #2b3b4e" cx="425.6" cy="254" r="10" />
+                <circle style="fill: #2b3b4e" cx="82.4" cy="254" r="10" />
+              </svg>
+                    </div>
+                    <!-- <div class="flex-fill variableName">Pressure</div> -->
+                    <div class="valueFont pressure ps-3">%presIN%<span class="superscript">hPa</span></div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div class="icon rounded-circle tvoc-icon text-center text-white bg-success">AQI</div>
+                    <!-- <div class="flex-fill variableName">AQI</div> -->
+                    <div class="valueFont text-success ps-3">%aqiIN%</div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div class="icon rounded-circle tvoc-icon text-center text-white bg-success">AQ</div>
+                    <!-- <div class="flex-fill variableName">AIRq</div> -->
+                    <div class="valueFont text-success ps-3">%aqIN%</div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div class="icon rounded-circle">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 508 508" style="enable-background: new 0 0 508 508" xml:space="preserve">
+                <circle style="fill: #808080" cx="254" cy="254" r="254" />
+                <path
+                  style="fill: #ffffff"
+                  d="M408.4,217.6c2.4-4.8,3.6-10.4,3.6-16c0-21.2-17.2-38-38-38c-0.4,0-0.8,0-1.2,0
+	c-10-37.6-44-65.2-84.8-65.2c-28.4,0-53.6,13.6-70,34.4c-9.6-5.2-20.4-8-32-8c-38,0-69.2,30.8-69.2,69.2c0,6,0.8,11.6,2,16.8
+	c-34.8,6-61.6,36.8-61.6,73.6c0,41.2,33.6,74.8,74.8,74.8h243.6c41.2,0,74.8-33.6,74.8-74.8C450.4,255.6,433.2,230,408.4,217.6z"
+                />
+                <path
+                  style="fill: #324a5e"
+                  d="M188.4,215.2c8.8,0,16,3.6,21.6,10.8l11.6-12.8c-9.2-10.4-20.4-15.6-34-15.6c-12,0-22.4,4-30.8,12.4
+		c-8.4,8-12.4,18.4-12.4,30.4c0,12.4,4,22.4,12.4,30.4s18.8,12,31.2,12s23.6-5.2,33.2-15.6l-11.6-12c-5.6,7.2-13.2,10.8-22,10.8
+		c-6.4,0-12.4-2.4-16.8-6.8c-4.8-4.8-6.8-10.8-6.8-18.4c0-7.6,2.4-13.6,7.2-18.4C175.6,217.2,181.6,215.2,188.4,215.2z"
+                />
+                <path
+                  style="fill: #324a5e"
+                  d="M272.4,197.6c-12,0-22.4,4-30.8,12c-8.4,8-12.4,18.4-12.4,30.4s4,22.4,12.4,30.4s18.4,12,30.8,12
+		s22.4-4,30.8-12s12.4-18.4,12.4-30.4s-4-22.4-12.4-30.4S284.8,197.6,272.4,197.6z M290,258.8c-4.8,5.2-10.4,7.6-17.2,7.6
+		c-6.8,0-12.8-2.4-17.2-7.6c-4.8-5.2-7.2-11.2-7.2-18.8c0-7.2,2.4-13.6,7.2-18.8c4.8-5.2,10.4-7.6,17.2-7.6c6.8,0,12.8,2.4,17.2,7.6
+		c4.8,5.2,7.2,11.6,7.2,18.8C297.2,247.6,294.8,253.6,290,258.8z"
+                />
+                <path
+                  style="fill: #324a5e"
+                  d="M342,286.8l9.6-10c4-4,6.4-7.2,8-10c1.6-2.4,2-5.2,2-8c0-5.2-1.6-9.2-5.2-12s-7.6-4.4-12.4-4.4
+		s-8.4,1.2-11.6,3.2s-6,5.2-8.4,8.8l9.6,5.6c3.2-4.8,6.4-7.2,9.6-7.2c2,0,3.2,0.8,4.4,2c1.2,1.2,1.6,2.8,1.6,4.4c0,2-0.8,3.6-2,5.6
+		s-3.6,4.4-6.8,8l-16,16.4v9.2h38.4v-10.8H342V286.8z"
+                />
+              </svg>
+                    </div>
+                    <!-- <div class="flex-fill variableName">CO2</div> -->
+                    <div class="valueFont text-secondary ps-3">%co2IN%<span class="superscript">ppm</span></div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between pb-3 px-4">
+                    <div class="icon rounded-circle tvoc-icon text-center text-white bg-danger">TVOC</div>
+                    <!-- <div class="flex-fill variableName">TVOC</div> -->
+                    <div class="valueFont text-danger ps-3">%tvocIN%<span class="superscript">ppb</span></div>
+                </div>
+            </div>
+
+            <div class="card text-dark bg-warning mb-3 me-3 shadow">
+                <div class="card-header display-6">OWM</div>
+
+                <div class="d-flex align-items-center justify-content-between pt-3 px-4">
+                    <div class="text-center temperature-icon rounded-circle">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="9.915px" height="22px" viewBox="0 0 9.915 22" enable-background="new 0 0 9.915 22" xml:space="preserve">
+                <path
+                  fill="#FFFFFF"
+                  d="M3.498,0.53c0.377-0.331,0.877-0.501,1.374-0.527C5.697-0.04,6.522,0.421,6.924,1.142
+        c0.237,0.399,0.315,0.871,0.311,1.33C7.229,5.856,7.245,9.24,7.227,12.625c1.019,0.539,1.855,1.424,2.301,2.491
+        c0.491,1.163,0.518,2.514,0.062,3.693c-0.414,1.102-1.24,2.038-2.276,2.594c-1.056,0.583-2.331,0.743-3.501,0.463
+        c-1.417-0.323-2.659-1.314-3.3-2.617C0.014,18.26-0.115,17.104,0.1,16.022c0.296-1.443,1.274-2.717,2.58-3.394
+        c0.013-3.44,0-6.881,0.007-10.322C2.674,1.634,2.974,0.955,3.498,0.53z"
+                ></path>
+              </svg>
+                    </div>
+                    <!-- <div class="flex-fill variableName">Temperature</div> -->
+                    <div class="valueFont temperature ps-3">%tempOWM%<span class="superscript">°C</span></div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div class="text-center humidity-icon rounded-circle">
+                        <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="12px" height="17.955px" viewBox="0 0 13 17.955" enable-background="new 0 0 13 17.955" xml:space="preserve">
+                <path
+                  fill="#FFFFFF"
+                  d="M1.819,6.217C3.139,4.064,6.5,0,6.5,0s3.363,4.064,4.681,6.217c1.793,2.926,2.133,5.05,1.571,7.057
+        c-0.438,1.574-2.264,4.681-6.252,4.681c-3.988,0-5.813-3.107-6.252-4.681C-0.313,11.267,0.026,9.143,1.819,6.217"
+                ></path>
+              </svg>
+                    </div>
+                    <!-- <div class="flex-fill variableName">Humidity</div> -->
+                    <div class="valueFont humidity ps-3">%humiOWM%<span class="superscript">&#37;</span></div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div class="icon rounded-circle">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 508 508" style="enable-background: new 0 0 508 508" xml:space="preserve">
+                <circle style="fill: #fd8469" cx="254" cy="254" r="254" />
+                <path
+                  style="fill: #324a5e"
+                  d="M254,446.8c-106.4,0-192.8-86.4-192.8-192.8S147.6,61.2,254,61.2S446.8,147.6,446.8,254
+	S360.4,446.8,254,446.8z"
+                />
+                <path
+                  style="fill: #e6e9ee"
+                  d="M406.8,262.8c0-2.8,0.4-6,0.4-8.8c0-84.4-68.4-153.2-153.2-153.2c-84.4,0-153.2,68.4-153.2,153.2
+	c0,2.8,0,6,0.4,8.8H406.8z"
+                />
+                <path
+                  style="fill: #ff7058"
+                  d="M204.8,166.4c-0.8-1.2-2-1.6-3.2-0.8c-1.2,0.4-2,2-1.2,3.2l42,101.2c0.4,0.4,0.4,1.2,0.8,1.6
+	c3.2,5.2,10,6.8,15.2,3.6c5.2-3.2,6.8-10,3.6-15.2L204.8,166.4z"
+                />
+                <circle style="fill: #ffd05b" cx="254" cy="262.8" r="27.6" />
+                <path
+                  style="fill: #acb3ba"
+                  d="M254,136L254,136c-2.8,0-5.2-2.4-5.2-5.2V120c0-2.8,2.4-5.2,5.2-5.2l0,0c2.8,0,5.2,2.4,5.2,5.2v10.8
+		C259.2,133.6,256.8,136,254,136z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M337.6,170.4L337.6,170.4c-2-2-2-5.2,0-7.2l7.6-7.6c2-2,5.2-2,7.2,0l0,0c2,2,2,5.2,0,7.2l-7.6,7.6
+		C342.4,172.4,339.2,172.4,337.6,170.4z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M156,156L156,156c2-2,5.2-2,7.2,0l7.6,7.6c2,2,2,5.2,0,7.2l0,0c-2,2-5.2,2-7.2,0l-7.6-7.6
+		C154,161.2,154,158,156,156z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M208.8,144.8L208.8,144.8c-2.4,1.2-5.6,0-6.4-2.8l-4-10c-1.2-2.4,0-5.6,2.8-6.4l0,0
+		c2.4-1.2,5.6,0,6.4,2.8l4,10C212.8,140.8,211.6,144,208.8,144.8z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M363.2,208.8L363.2,208.8c-1.2-2.4,0-5.6,2.8-6.4l10-4c2.4-1.2,5.6,0,6.4,2.8l0,0
+		c1.2,2.4,0,5.6-2.8,6.4l-10,4C367.2,212.8,364,211.6,363.2,208.8z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M299.2,144.8L299.2,144.8c-2.4-1.2-3.6-4-2.8-6.4l4-10c1.2-2.4,4-3.6,6.4-2.8l0,0
+		c2.4,1.2,3.6,4,2.8,6.4l-4,10C304.8,144.8,301.6,146,299.2,144.8z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M125.6,200.8L125.6,200.8c1.2-2.4,4-3.6,6.4-2.8l10,4c2.4,1.2,3.6,4,2.8,6.4l0,0
+		c-1.2,2.4-4,3.6-6.4,2.8l-10-4C126,206.4,124.8,203.6,125.6,200.8z"
+                />
+                <circle style="fill: #2b3b4e" cx="254" cy="82.4" r="10" />
+                <circle style="fill: #2b3b4e" cx="254" cy="425.6" r="10" />
+                <circle style="fill: #2b3b4e" cx="425.6" cy="254" r="10" />
+                <circle style="fill: #2b3b4e" cx="82.4" cy="254" r="10" />
+              </svg>
+                    </div>
+                    <!-- <div class="flex-fill variableName">Pressure</div> -->
+                    <div class="valueFont pressure ps-3">%presOWM%<span class="superscript">hPa</span></div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div class="icon rounded-circle">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 185.558 185.558" style="fill: yellow; enable-background: new 0 0 185.558 185.558" xml:space="preserve">
+                <path
+                  d="M92.779,46.356c-27.37,0-49.636,22.265-49.636,49.636c0,5.366,0.85,10.638,2.525,15.674
+				c0.487,1.459,1.849,2.441,3.385,2.441h87.453c1.536,0,2.897-0.982,3.385-2.441c1.675-5.035,2.525-10.307,2.525-15.674
+				C142.415,68.621,120.149,46.356,92.779,46.356z M133.852,106.974H51.706c-0.951-3.562-1.431-7.246-1.431-10.983
+				c0-23.435,19.069-42.504,42.504-42.504s42.504,19.069,42.504,42.504C135.283,99.728,134.803,103.412,133.852,106.974z"
+                />
+                <path
+                  d="M45.379,58.098L23.984,36.703c-1.393-1.393-3.649-1.393-5.042,0s-1.393,3.649,0,5.042L40.336,63.14
+				c0.697,0.696,1.609,1.044,2.521,1.044s1.825-0.348,2.521-1.045C46.772,61.747,46.772,59.491,45.379,58.098z"
+                />
+                <path
+                  d="M166.616,36.703c-1.393-1.393-3.649-1.393-5.042,0l-21.395,21.395c-1.393,1.393-1.393,3.649,0,5.042
+				c0.697,0.696,1.609,1.044,2.521,1.044c0.913,0,1.825-0.348,2.521-1.045l21.395-21.395
+				C168.009,40.352,168.009,38.096,166.616,36.703z"
+                />
+                <path
+                  d="M92.779,39.224c1.971,0,3.566-1.595,3.566-3.566V3.566C96.345,1.595,94.75,0,92.779,0s-3.566,1.595-3.566,3.566v32.092
+				C89.213,37.629,90.808,39.224,92.779,39.224z"
+                />
+                <path
+                  d="M90.258,129.414l-22.694,22.694l5.042,5.042l16.607-16.607v45.015h7.132v-45.015l16.607,16.607l5.042-5.042L95.3,129.414
+				C93.907,128.021,91.651,128.021,90.258,129.414z"
+                />
+              </svg>
+                    </div>
+                    <!-- <div class="flex-fill variableName">Sunrise</div> -->
+                    <div class="valueFont sunrise ps-3">%sunrise%</div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4 pb-3">
+                    <div class="icon rounded-circle">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 184.2 184.2" style="fill: #eaea0d; enable-background: new 0 0 184.2 184.2" xml:space="preserve">
+                <path
+                  d="M92.1,46.356c-27.369,0-49.636,22.265-49.636,49.636c0,5.359,0.85,10.631,2.526,15.674
+				c0.484,1.459,1.847,2.441,3.383,2.441h87.453c1.536,0,2.899-0.982,3.383-2.441c1.677-5.042,2.526-10.314,2.526-15.674
+				C141.736,68.621,119.469,46.356,92.1,46.356z M133.173,106.974H51.027c-0.951-3.566-1.431-7.25-1.431-10.983
+				c0-23.435,19.067-42.504,42.504-42.504c23.437,0,42.504,19.069,42.504,42.504C134.604,99.724,134.124,103.408,133.173,106.974z"
+                />
+                <path
+                  d="M44.7,58.098L23.305,36.703c-1.393-1.393-3.649-1.393-5.042,0s-1.393,3.649,0,5.042L39.657,63.14
+				c0.697,0.696,1.609,1.044,2.521,1.044c0.912,0,1.825-0.348,2.521-1.045C46.093,61.747,46.093,59.491,44.7,58.098z"
+                />
+                <path
+                  d="M165.937,36.703c-1.393-1.393-3.649-1.393-5.042,0L139.5,58.098c-1.393,1.393-1.393,3.649,0,5.042
+				c0.697,0.696,1.609,1.044,2.521,1.044s1.825-0.348,2.521-1.045l21.395-21.395C167.33,40.352,167.33,38.096,165.937,36.703z"
+                />
+                <path
+                  d="M92.1,39.224c1.969,0,3.566-1.595,3.566-3.566V3.566C95.666,1.595,94.069,0,92.1,0c-1.969,0-3.566,1.595-3.566,3.566
+				v32.092C88.534,37.629,90.131,39.224,92.1,39.224z"
+                />
+                <path
+                  d="M95.666,172.026v-40.091h-7.132v40.091l-16.605-16.607l-5.042,5.042l22.692,22.694c0.669,0.669,1.576,1.045,2.521,1.045
+				s1.852-0.376,2.521-1.045l22.692-22.694l-5.042-5.042L95.666,172.026z"
+                />
+              </svg>
+                    </div>
+                    <!-- <div class="flex-fill variableName">Sunset</div> -->
+                    <div class="valueFont sunset ps-3">%sunset%</div>
+                </div>
+            </div>
+
+            <div class="card text-dark bg-warning mb-3 me-3 shadow">
+                <div class="card-header display-6">AM-1</div>
+
+                <div class="d-flex align-items-center justify-content-between pt-3 px-4">
+                    <div class="text-center temperature-icon rounded-circle">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="9.915px" height="22px" viewBox="0 0 9.915 22" enable-background="new 0 0 9.915 22" xml:space="preserve">
+                <path
+                  fill="#FFFFFF"
+                  d="M3.498,0.53c0.377-0.331,0.877-0.501,1.374-0.527C5.697-0.04,6.522,0.421,6.924,1.142
+        c0.237,0.399,0.315,0.871,0.311,1.33C7.229,5.856,7.245,9.24,7.227,12.625c1.019,0.539,1.855,1.424,2.301,2.491
+        c0.491,1.163,0.518,2.514,0.062,3.693c-0.414,1.102-1.24,2.038-2.276,2.594c-1.056,0.583-2.331,0.743-3.501,0.463
+        c-1.417-0.323-2.659-1.314-3.3-2.617C0.014,18.26-0.115,17.104,0.1,16.022c0.296-1.443,1.274-2.717,2.58-3.394
+        c0.013-3.44,0-6.881,0.007-10.322C2.674,1.634,2.974,0.955,3.498,0.53z"
+                ></path>
+              </svg>
+                    </div>
+                    <!-- <div class="flex-fill variableName">Temperature</div> -->
+                    <div class="valueFont temperature ps-3">%tempAM1%<span class="superscript">°C</span></div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div class="text-center humidity-icon rounded-circle">
+                        <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="12px" height="17.955px" viewBox="0 0 13 17.955" enable-background="new 0 0 13 17.955" xml:space="preserve">
+                <path
+                  fill="#FFFFFF"
+                  d="M1.819,6.217C3.139,4.064,6.5,0,6.5,0s3.363,4.064,4.681,6.217c1.793,2.926,2.133,5.05,1.571,7.057
+        c-0.438,1.574-2.264,4.681-6.252,4.681c-3.988,0-5.813-3.107-6.252-4.681C-0.313,11.267,0.026,9.143,1.819,6.217"
+                ></path>
+              </svg>
+                    </div>
+                    <!-- <div class="flex-fill variableName">Humidity</div> -->
+                    <div class="valueFont humidity ps-3">%humiAM1%<span class="superscript">&#37;</span></div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div class="icon rounded-circle">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 508 508" style="enable-background: new 0 0 508 508" xml:space="preserve">
+                <circle style="fill: #fd8469" cx="254" cy="254" r="254" />
+                <path
+                  style="fill: #324a5e"
+                  d="M254,446.8c-106.4,0-192.8-86.4-192.8-192.8S147.6,61.2,254,61.2S446.8,147.6,446.8,254
+	S360.4,446.8,254,446.8z"
+                />
+                <path
+                  style="fill: #e6e9ee"
+                  d="M406.8,262.8c0-2.8,0.4-6,0.4-8.8c0-84.4-68.4-153.2-153.2-153.2c-84.4,0-153.2,68.4-153.2,153.2
+	c0,2.8,0,6,0.4,8.8H406.8z"
+                />
+                <path
+                  style="fill: #ff7058"
+                  d="M204.8,166.4c-0.8-1.2-2-1.6-3.2-0.8c-1.2,0.4-2,2-1.2,3.2l42,101.2c0.4,0.4,0.4,1.2,0.8,1.6
+	c3.2,5.2,10,6.8,15.2,3.6c5.2-3.2,6.8-10,3.6-15.2L204.8,166.4z"
+                />
+                <circle style="fill: #ffd05b" cx="254" cy="262.8" r="27.6" />
+                <path
+                  style="fill: #acb3ba"
+                  d="M254,136L254,136c-2.8,0-5.2-2.4-5.2-5.2V120c0-2.8,2.4-5.2,5.2-5.2l0,0c2.8,0,5.2,2.4,5.2,5.2v10.8
+		C259.2,133.6,256.8,136,254,136z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M337.6,170.4L337.6,170.4c-2-2-2-5.2,0-7.2l7.6-7.6c2-2,5.2-2,7.2,0l0,0c2,2,2,5.2,0,7.2l-7.6,7.6
+		C342.4,172.4,339.2,172.4,337.6,170.4z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M156,156L156,156c2-2,5.2-2,7.2,0l7.6,7.6c2,2,2,5.2,0,7.2l0,0c-2,2-5.2,2-7.2,0l-7.6-7.6
+		C154,161.2,154,158,156,156z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M208.8,144.8L208.8,144.8c-2.4,1.2-5.6,0-6.4-2.8l-4-10c-1.2-2.4,0-5.6,2.8-6.4l0,0
+		c2.4-1.2,5.6,0,6.4,2.8l4,10C212.8,140.8,211.6,144,208.8,144.8z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M363.2,208.8L363.2,208.8c-1.2-2.4,0-5.6,2.8-6.4l10-4c2.4-1.2,5.6,0,6.4,2.8l0,0
+		c1.2,2.4,0,5.6-2.8,6.4l-10,4C367.2,212.8,364,211.6,363.2,208.8z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M299.2,144.8L299.2,144.8c-2.4-1.2-3.6-4-2.8-6.4l4-10c1.2-2.4,4-3.6,6.4-2.8l0,0
+		c2.4,1.2,3.6,4,2.8,6.4l-4,10C304.8,144.8,301.6,146,299.2,144.8z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M125.6,200.8L125.6,200.8c1.2-2.4,4-3.6,6.4-2.8l10,4c2.4,1.2,3.6,4,2.8,6.4l0,0
+		c-1.2,2.4-4,3.6-6.4,2.8l-10-4C126,206.4,124.8,203.6,125.6,200.8z"
+                />
+                <circle style="fill: #2b3b4e" cx="254" cy="82.4" r="10" />
+                <circle style="fill: #2b3b4e" cx="254" cy="425.6" r="10" />
+                <circle style="fill: #2b3b4e" cx="425.6" cy="254" r="10" />
+                <circle style="fill: #2b3b4e" cx="82.4" cy="254" r="10" />
+              </svg>
+                    </div>
+                    <!-- <div class="flex-fill variableName">Pressure</div> -->
+                    <div class="valueFont pressure ps-3">%presAM1%<span class="superscript">hPa</span></div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div class="icon rounded-circle tvoc-icon text-center text-white bg-success">AQI</div>
+                    <!-- <div class="flex-fill variableName">AQI</div> -->
+                    <div class="valueFont text-success ps-3">%aqiAM1%</div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div class="icon rounded-circle tvoc-icon text-center text-white bg-success">AQ</div>
+                    <!-- <div class="flex-fill variableName">AIRq</div> -->
+                    <div class="valueFont text-success ps-3">%aqAM1%</div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div class="icon rounded-circle">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 508 508" style="enable-background: new 0 0 508 508" xml:space="preserve">
+                <circle style="fill: #808080" cx="254" cy="254" r="254" />
+                <path
+                  style="fill: #ffffff"
+                  d="M408.4,217.6c2.4-4.8,3.6-10.4,3.6-16c0-21.2-17.2-38-38-38c-0.4,0-0.8,0-1.2,0
+	c-10-37.6-44-65.2-84.8-65.2c-28.4,0-53.6,13.6-70,34.4c-9.6-5.2-20.4-8-32-8c-38,0-69.2,30.8-69.2,69.2c0,6,0.8,11.6,2,16.8
+	c-34.8,6-61.6,36.8-61.6,73.6c0,41.2,33.6,74.8,74.8,74.8h243.6c41.2,0,74.8-33.6,74.8-74.8C450.4,255.6,433.2,230,408.4,217.6z"
+                />
+                <path
+                  style="fill: #324a5e"
+                  d="M188.4,215.2c8.8,0,16,3.6,21.6,10.8l11.6-12.8c-9.2-10.4-20.4-15.6-34-15.6c-12,0-22.4,4-30.8,12.4
+		c-8.4,8-12.4,18.4-12.4,30.4c0,12.4,4,22.4,12.4,30.4s18.8,12,31.2,12s23.6-5.2,33.2-15.6l-11.6-12c-5.6,7.2-13.2,10.8-22,10.8
+		c-6.4,0-12.4-2.4-16.8-6.8c-4.8-4.8-6.8-10.8-6.8-18.4c0-7.6,2.4-13.6,7.2-18.4C175.6,217.2,181.6,215.2,188.4,215.2z"
+                />
+                <path
+                  style="fill: #324a5e"
+                  d="M272.4,197.6c-12,0-22.4,4-30.8,12c-8.4,8-12.4,18.4-12.4,30.4s4,22.4,12.4,30.4s18.4,12,30.8,12
+		s22.4-4,30.8-12s12.4-18.4,12.4-30.4s-4-22.4-12.4-30.4S284.8,197.6,272.4,197.6z M290,258.8c-4.8,5.2-10.4,7.6-17.2,7.6
+		c-6.8,0-12.8-2.4-17.2-7.6c-4.8-5.2-7.2-11.2-7.2-18.8c0-7.2,2.4-13.6,7.2-18.8c4.8-5.2,10.4-7.6,17.2-7.6c6.8,0,12.8,2.4,17.2,7.6
+		c4.8,5.2,7.2,11.6,7.2,18.8C297.2,247.6,294.8,253.6,290,258.8z"
+                />
+                <path
+                  style="fill: #324a5e"
+                  d="M342,286.8l9.6-10c4-4,6.4-7.2,8-10c1.6-2.4,2-5.2,2-8c0-5.2-1.6-9.2-5.2-12s-7.6-4.4-12.4-4.4
+		s-8.4,1.2-11.6,3.2s-6,5.2-8.4,8.8l9.6,5.6c3.2-4.8,6.4-7.2,9.6-7.2c2,0,3.2,0.8,4.4,2c1.2,1.2,1.6,2.8,1.6,4.4c0,2-0.8,3.6-2,5.6
+		s-3.6,4.4-6.8,8l-16,16.4v9.2h38.4v-10.8H342V286.8z"
+                />
+              </svg>
+                    </div>
+                    <!-- <div class="flex-fill variableName">CO2</div> -->
+                    <div class="valueFont text-secondary ps-3">%co2AM1%<span class="superscript">ppm</span></div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between pb-3 px-4">
+                    <div class="icon rounded-circle tvoc-icon text-center text-white bg-danger">TVOC</div>
+                    <!-- <div class="flex-fill variableName">TVOC</div> -->
+                    <div class="valueFont text-danger ps-3">%tvocAM1%<span class="superscript">ppb</span></div>
+                </div>
+            </div>
+
+            <div class="card text-dark bg-warning mb-3 me-3 shadow">
+                <div class="card-header display-6">AM-2</div>
+
+                <div class="d-flex align-items-center justify-content-between pt-3 px-4">
+                    <div class="text-center temperature-icon rounded-circle">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="9.915px" height="22px" viewBox="0 0 9.915 22" enable-background="new 0 0 9.915 22" xml:space="preserve">
+                <path
+                  fill="#FFFFFF"
+                  d="M3.498,0.53c0.377-0.331,0.877-0.501,1.374-0.527C5.697-0.04,6.522,0.421,6.924,1.142
+        c0.237,0.399,0.315,0.871,0.311,1.33C7.229,5.856,7.245,9.24,7.227,12.625c1.019,0.539,1.855,1.424,2.301,2.491
+        c0.491,1.163,0.518,2.514,0.062,3.693c-0.414,1.102-1.24,2.038-2.276,2.594c-1.056,0.583-2.331,0.743-3.501,0.463
+        c-1.417-0.323-2.659-1.314-3.3-2.617C0.014,18.26-0.115,17.104,0.1,16.022c0.296-1.443,1.274-2.717,2.58-3.394
+        c0.013-3.44,0-6.881,0.007-10.322C2.674,1.634,2.974,0.955,3.498,0.53z"
+                ></path>
+              </svg>
+                    </div>
+                    <!-- <div class="flex-fill variableName">Temperature</div> -->
+                    <div class="valueFont temperature ps-3">%tempAM2%<span class="superscript">°C</span></div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div class="text-center humidity-icon rounded-circle">
+                        <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="12px" height="17.955px" viewBox="0 0 13 17.955" enable-background="new 0 0 13 17.955" xml:space="preserve">
+                <path
+                  fill="#FFFFFF"
+                  d="M1.819,6.217C3.139,4.064,6.5,0,6.5,0s3.363,4.064,4.681,6.217c1.793,2.926,2.133,5.05,1.571,7.057
+        c-0.438,1.574-2.264,4.681-6.252,4.681c-3.988,0-5.813-3.107-6.252-4.681C-0.313,11.267,0.026,9.143,1.819,6.217"
+                ></path>
+              </svg>
+                    </div>
+                    <!-- <div class="flex-fill variableName">Humidity</div> -->
+                    <div class="valueFont humidity ps-3">%humiAM2%<span class="superscript">&#37;</span></div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div class="icon rounded-circle">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 508 508" style="enable-background: new 0 0 508 508" xml:space="preserve">
+                <circle style="fill: #fd8469" cx="254" cy="254" r="254" />
+                <path
+                  style="fill: #324a5e"
+                  d="M254,446.8c-106.4,0-192.8-86.4-192.8-192.8S147.6,61.2,254,61.2S446.8,147.6,446.8,254
+	S360.4,446.8,254,446.8z"
+                />
+                <path
+                  style="fill: #e6e9ee"
+                  d="M406.8,262.8c0-2.8,0.4-6,0.4-8.8c0-84.4-68.4-153.2-153.2-153.2c-84.4,0-153.2,68.4-153.2,153.2
+	c0,2.8,0,6,0.4,8.8H406.8z"
+                />
+                <path
+                  style="fill: #ff7058"
+                  d="M204.8,166.4c-0.8-1.2-2-1.6-3.2-0.8c-1.2,0.4-2,2-1.2,3.2l42,101.2c0.4,0.4,0.4,1.2,0.8,1.6
+	c3.2,5.2,10,6.8,15.2,3.6c5.2-3.2,6.8-10,3.6-15.2L204.8,166.4z"
+                />
+                <circle style="fill: #ffd05b" cx="254" cy="262.8" r="27.6" />
+                <path
+                  style="fill: #acb3ba"
+                  d="M254,136L254,136c-2.8,0-5.2-2.4-5.2-5.2V120c0-2.8,2.4-5.2,5.2-5.2l0,0c2.8,0,5.2,2.4,5.2,5.2v10.8
+		C259.2,133.6,256.8,136,254,136z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M337.6,170.4L337.6,170.4c-2-2-2-5.2,0-7.2l7.6-7.6c2-2,5.2-2,7.2,0l0,0c2,2,2,5.2,0,7.2l-7.6,7.6
+		C342.4,172.4,339.2,172.4,337.6,170.4z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M156,156L156,156c2-2,5.2-2,7.2,0l7.6,7.6c2,2,2,5.2,0,7.2l0,0c-2,2-5.2,2-7.2,0l-7.6-7.6
+		C154,161.2,154,158,156,156z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M208.8,144.8L208.8,144.8c-2.4,1.2-5.6,0-6.4-2.8l-4-10c-1.2-2.4,0-5.6,2.8-6.4l0,0
+		c2.4-1.2,5.6,0,6.4,2.8l4,10C212.8,140.8,211.6,144,208.8,144.8z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M363.2,208.8L363.2,208.8c-1.2-2.4,0-5.6,2.8-6.4l10-4c2.4-1.2,5.6,0,6.4,2.8l0,0
+		c1.2,2.4,0,5.6-2.8,6.4l-10,4C367.2,212.8,364,211.6,363.2,208.8z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M299.2,144.8L299.2,144.8c-2.4-1.2-3.6-4-2.8-6.4l4-10c1.2-2.4,4-3.6,6.4-2.8l0,0
+		c2.4,1.2,3.6,4,2.8,6.4l-4,10C304.8,144.8,301.6,146,299.2,144.8z"
+                />
+                <path
+                  style="fill: #acb3ba"
+                  d="M125.6,200.8L125.6,200.8c1.2-2.4,4-3.6,6.4-2.8l10,4c2.4,1.2,3.6,4,2.8,6.4l0,0
+		c-1.2,2.4-4,3.6-6.4,2.8l-10-4C126,206.4,124.8,203.6,125.6,200.8z"
+                />
+                <circle style="fill: #2b3b4e" cx="254" cy="82.4" r="10" />
+                <circle style="fill: #2b3b4e" cx="254" cy="425.6" r="10" />
+                <circle style="fill: #2b3b4e" cx="425.6" cy="254" r="10" />
+                <circle style="fill: #2b3b4e" cx="82.4" cy="254" r="10" />
+              </svg>
+                    </div>
+                    <!-- <div class="flex-fill variableName">Pressure</div> -->
+                    <div class="valueFont pressure ps-3">%presAM2%<span class="superscript">hPa</span></div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div class="icon rounded-circle tvoc-icon text-center text-white bg-success">AQI</div>
+                    <!-- <div class="flex-fill variableName">AQI</div> -->
+                    <div class="valueFont text-success ps-3">%aqiAM2%</div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div class="icon rounded-circle tvoc-icon text-center text-white bg-success">AQ</div>
+                    <!-- <div class="flex-fill variableName">AIRq</div> -->
+                    <div class="valueFont text-success ps-3">%aqAM2%</div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div class="icon rounded-circle">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 508 508" style="enable-background: new 0 0 508 508" xml:space="preserve">
+                <circle style="fill: #808080" cx="254" cy="254" r="254" />
+                <path
+                  style="fill: #ffffff"
+                  d="M408.4,217.6c2.4-4.8,3.6-10.4,3.6-16c0-21.2-17.2-38-38-38c-0.4,0-0.8,0-1.2,0
+	c-10-37.6-44-65.2-84.8-65.2c-28.4,0-53.6,13.6-70,34.4c-9.6-5.2-20.4-8-32-8c-38,0-69.2,30.8-69.2,69.2c0,6,0.8,11.6,2,16.8
+	c-34.8,6-61.6,36.8-61.6,73.6c0,41.2,33.6,74.8,74.8,74.8h243.6c41.2,0,74.8-33.6,74.8-74.8C450.4,255.6,433.2,230,408.4,217.6z"
+                />
+                <path
+                  style="fill: #324a5e"
+                  d="M188.4,215.2c8.8,0,16,3.6,21.6,10.8l11.6-12.8c-9.2-10.4-20.4-15.6-34-15.6c-12,0-22.4,4-30.8,12.4
+		c-8.4,8-12.4,18.4-12.4,30.4c0,12.4,4,22.4,12.4,30.4s18.8,12,31.2,12s23.6-5.2,33.2-15.6l-11.6-12c-5.6,7.2-13.2,10.8-22,10.8
+		c-6.4,0-12.4-2.4-16.8-6.8c-4.8-4.8-6.8-10.8-6.8-18.4c0-7.6,2.4-13.6,7.2-18.4C175.6,217.2,181.6,215.2,188.4,215.2z"
+                />
+                <path
+                  style="fill: #324a5e"
+                  d="M272.4,197.6c-12,0-22.4,4-30.8,12c-8.4,8-12.4,18.4-12.4,30.4s4,22.4,12.4,30.4s18.4,12,30.8,12
+		s22.4-4,30.8-12s12.4-18.4,12.4-30.4s-4-22.4-12.4-30.4S284.8,197.6,272.4,197.6z M290,258.8c-4.8,5.2-10.4,7.6-17.2,7.6
+		c-6.8,0-12.8-2.4-17.2-7.6c-4.8-5.2-7.2-11.2-7.2-18.8c0-7.2,2.4-13.6,7.2-18.8c4.8-5.2,10.4-7.6,17.2-7.6c6.8,0,12.8,2.4,17.2,7.6
+		c4.8,5.2,7.2,11.6,7.2,18.8C297.2,247.6,294.8,253.6,290,258.8z"
+                />
+                <path
+                  style="fill: #324a5e"
+                  d="M342,286.8l9.6-10c4-4,6.4-7.2,8-10c1.6-2.4,2-5.2,2-8c0-5.2-1.6-9.2-5.2-12s-7.6-4.4-12.4-4.4
+		s-8.4,1.2-11.6,3.2s-6,5.2-8.4,8.8l9.6,5.6c3.2-4.8,6.4-7.2,9.6-7.2c2,0,3.2,0.8,4.4,2c1.2,1.2,1.6,2.8,1.6,4.4c0,2-0.8,3.6-2,5.6
+		s-3.6,4.4-6.8,8l-16,16.4v9.2h38.4v-10.8H342V286.8z"
+                />
+              </svg>
+                    </div>
+                    <!-- <div class="flex-fill variableName">CO2</div> -->
+                    <div class="valueFont text-secondary ps-3">%co2AM2%<span class="superscript">ppm</span></div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between pb-3 px-4">
+                    <div class="icon rounded-circle tvoc-icon text-center text-white bg-danger">TVOC</div>
+                    <!-- <div class="flex-fill variableName">TVOC</div> -->
+                    <div class="valueFont text-danger ps-3">%tvocAM2%<span class="superscript">ppb</span></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="h6 bg-warning bg-gradient fw-bold text-white py-1 border-top rounded-top m-0">&copy; JAPISOFT, 2021</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+
+</html>
