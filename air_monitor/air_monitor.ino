@@ -53,7 +53,7 @@ void wifiConnect() {
   Serial.print("Spajam s WIFI sietou ...");
   ESPAsync_WiFiManager ESPAsync_wifiManager(&webServer, &dnsServer, "Async_AutoConnect");
   //ESPAsync_wifiManager.resetSettings();    // Vymazanie WiFi nastaveni
-  ESPAsync_wifiManager.autoConnect("CwaStation");
+  ESPAsync_wifiManager.autoConnect("AirMonitor");
 }
 
 // START A OBSLUHA ASYNCHRONNEHO WEBOVEHO SERVERA A OTA UPDATE
