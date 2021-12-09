@@ -50,10 +50,10 @@ void loop() {
 // Spojenie s WIFI sietou
 void wifiConnect() {
   Serial.println();
-  Serial.print("Spajam s WIFI sietou ...");
+  Serial.print("Spajam s WIFI sietou ... ");
   ESPAsync_WiFiManager ESPAsync_wifiManager(&webServer, &dnsServer, "Async_AutoConnect");
   //ESPAsync_wifiManager.resetSettings();    // Vymazanie WiFi nastaveni
-  ESPAsync_wifiManager.autoConnect("AirMonitor");
+  ESPAsync_wifiManager.autoConnect("AirMonitor1");  // AirMonitor1, AirMonitor2, ...
 }
 
 // START A OBSLUHA ASYNCHRONNEHO WEBOVEHO SERVERA A OTA UPDATE
@@ -66,7 +66,10 @@ void handleRequests() {
 
   AsyncElegantOTA.begin(&webServer);           // Start AsyncElegantOTA ... http://IPadresaESP32/update
   webServer.begin();                           // Start weboveho servera
-  Serial.println();
+  Serial.print("pripojene k ");
+  Serial.println(WiFi.SSID());
+  Serial.print("IP: "); Serial.println(WiFi.localIP());
+  Serial.print("MAC: "); Serial.println(WiFi.macAddress());
   Serial.println("Webovy server je nastartovany, OTA update funkcny.");
   Serial.println();
 }
