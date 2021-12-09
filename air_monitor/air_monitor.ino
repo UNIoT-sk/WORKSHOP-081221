@@ -50,10 +50,10 @@ void loop() {
 // Spojenie s WIFI sietou
 void wifiConnect() {
   Serial.println();
-  Serial.print("Spajam s WIFI sietou ... ");
+  Serial.printf("Spajam %s s WIFI sietou ... ", AMname);
   ESPAsync_WiFiManager ESPAsync_wifiManager(&webServer, &dnsServer, "Async_AutoConnect");
   //ESPAsync_wifiManager.resetSettings();    // Vymazanie WiFi nastaveni
-  ESPAsync_wifiManager.autoConnect("AirMonitor1");  // AirMonitor1, AirMonitor2, ...
+  ESPAsync_wifiManager.autoConnect(AMname);  // Nazov AP Monitora vzduchu
 }
 
 // START A OBSLUHA ASYNCHRONNEHO WEBOVEHO SERVERA A OTA UPDATE
